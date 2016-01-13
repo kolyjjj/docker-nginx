@@ -9,4 +9,4 @@ RUN mkdir -p /var/www/html
 # backup the default.conf file
 RUN mv /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf_bac
 ADD global.conf /etc/nginx/conf.d/
-# VOLUME /usr/share/nginx/html
+CMD ["nginx", "-g", "daemon off;"]
