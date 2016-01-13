@@ -9,4 +9,6 @@ RUN mkdir -p /var/www/html
 # backup the default.conf file
 RUN mv /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf_bac
 ADD global.conf /etc/nginx/conf.d/
+RUN ln -sf /dev/stdout /var/log/nginx/access.log
+RUN ln -sf /dev/stderr /var/log/nginx/error.log
 CMD ["nginx", "-g", "daemon off;"]
