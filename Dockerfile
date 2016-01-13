@@ -5,5 +5,8 @@ RUN chmod 755 /tmp/nginx_signing.key
 RUN apt-key add /tmp/nginx_signing.key
 RUN echo "deb http://nginx.org/packages/debian/ jessie nginx" >> /etc/apt/sources.list
 RUN apt-get update && apt-get install -y curl vim nginx && apt-get clean && rm -rf /var/lib/apt/lists/*
-RUN mkdir /var/www/html
+RUN mkdir -p /var/www/html
+# backup the default.conf file
+RUN mv /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf_bac
+ADD global.conf /etc/nginx/conf.d/
 # VOLUME /usr/share/nginx/html
